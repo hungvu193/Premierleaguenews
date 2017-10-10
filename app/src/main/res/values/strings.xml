@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">PremierLeagueNews</string>
+    <string name="points">Pts</string>
+    <string name="gd">GD</string>
+    <string name="lose">L</string>
+    <string name="pos">Pos</string>
+    <string name="d">D</string>
+    <string name="win">W</string>
+    <string name="played">P</string>
+    <string name="ranking">Premier League Standings</string>
+</resources>
