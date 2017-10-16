@@ -2,14 +2,23 @@ package com.thelazyman193.premierleaguenews.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import com.thelazyman193.premierleaguenews.R;
+import com.thelazyman193.premierleaguenews.fragment.team.OverviewFragment;
+import com.thelazyman193.premierleaguenews.fragment.team.SquadFragment;
+import com.thelazyman193.premierleaguenews.fragment.team.TeamFixtureFragment;
 import com.thelazyman193.premierleaguenews.retrofit.FBAPIService;
 import com.thelazyman193.premierleaguenews.utils.Utils;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class TeamInfoActivity extends AppCompatActivity {
     private String teamName;
@@ -22,6 +31,8 @@ public class TeamInfoActivity extends AppCompatActivity {
     private String playerTeam;
     @BindView(R.id.tabLayout)
     TabLayout tabLayout;
+    @BindView(R.id.tvTitle)
+    TextView tvTitle;
     @BindView(R.id.viewpager)
     ViewPager viewPager;
 
@@ -30,13 +41,17 @@ public class TeamInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_info);
+        ButterKnife.bind(this);
         teamName = getIntent().getExtras().getString("team_name");
         teamId = getTeamID(teamName);
         fixtureTeam = "http://api.football-data.org/v1/teams/" + teamId + "/fixtures";
         playerTeam = "http://api.football-data.org/v1/teams/" + teamId + "/players";
-
+        tvTitle.setText(teamName + "");
+        viewPager.setOffscreenPageLimit(2);
+        TeamAdapter teamAdapter = new TeamAdapter(getSupportFragmentManager(), linkNews, teamId);
+        viewPager.setAdapter(teamAdapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
-
 
 
     private int getTeamID(String teamFull) {
@@ -127,5 +142,54 @@ public class TeamInfoActivity extends AppCompatActivity {
         }
     }
 
+    @OnClick(R.id.imgBack)
+    public void onBack() {
+        finish();
+    }
+
+    private class TeamAdapter extends FragmentStatePagerAdapter {
+        private String linkNew; private int teamID;
+
+        public TeamAdapter(FragmentManager fm, String linkNew, int teamID) {
+            super(fm);
+            this.linkNew = linkNew;
+            this.teamID = teamID;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return OverviewFragment.getInstance(linkNew);
+                case 1:
+                    return SquadFragment.getInstance(teamID);
+                case 2:
+                    return TeamFixtureFragment.getInstance(teamID);
+
+                default:
+                    return OverviewFragment.getInstance(linkNew);
+            }
+
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "Overview";
+                case 1:
+                    return "Squad";
+                case 2:
+                    return "Upcoming Fixtures";
+                default:
+                    return "Overview";
+            }
+        }
+    }
 
 }

@@ -6,9 +6,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 
 import com.thelazyman193.premierleaguenews.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -18,12 +20,14 @@ import butterknife.ButterKnife;
  */
 
 public class NewFragment extends Fragment {
-
+    @BindView(R.id.webView)
+    WebView webView;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_new,container,false);
         ButterKnife.bind(this,view);
+        webView.loadUrl("https://www.premierleague.com/");
         return view;
     }
 }

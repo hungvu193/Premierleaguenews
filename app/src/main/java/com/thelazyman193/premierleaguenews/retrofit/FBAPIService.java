@@ -23,7 +23,7 @@ public interface FBAPIService {
     //get player
     @GET("/v1/teams/{teamid}/players")
     Call<PlayerDataBean> getPlayerList(@Header("X-Auth-Token") String token,
-                                       @Path("teamid") String teamid);
+                                       @Path("teamid") int teamid);
 
     //get all fixtures
     @GET("/v1/teams/{teamid}/fixtures")
@@ -34,7 +34,7 @@ public interface FBAPIService {
     //get player
     @GET("/v1/teams/{teamid}/fixtures")
     Call<PlayerDataBean> getNextLastFixture(@Header("X-Auth-Token") String token,
-                                            @Path("teamid") String teamid,
+                                            @Path("teamid") int teamid,
                                             @Query("timeFrame") String timeFrame);
 
 
