@@ -1,4 +1,4 @@
-package com.thelazyman193.premierleaguenews.fragment;
+package com.thelazyman193.premierleaguenews.fragment.team;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
