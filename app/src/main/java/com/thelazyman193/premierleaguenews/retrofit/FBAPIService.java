@@ -1,5 +1,6 @@
 package com.thelazyman193.premierleaguenews.retrofit;
 
+import com.thelazyman193.premierleaguenews.model.fixture.FixtureDataBean;
 import com.thelazyman193.premierleaguenews.model.player.PlayerDataBean;
 import com.thelazyman193.premierleaguenews.model.premierleagueteam.PremierLeagueRank;
 
@@ -33,9 +34,9 @@ public interface FBAPIService {
 
     //get player
     @GET("/v1/teams/{teamid}/fixtures")
-    Call<PlayerDataBean> getNextLastFixture(@Header("X-Auth-Token") String token,
-                                            @Path("teamid") int teamid,
-                                            @Query("timeFrame") String timeFrame);
+    Call<FixtureDataBean> getNextLastFixture(@Header("X-Auth-Token") String token,
+                                             @Path("teamid") int teamid,
+                                             @Query("timeFrame") String timeFrame);
 
 
 }

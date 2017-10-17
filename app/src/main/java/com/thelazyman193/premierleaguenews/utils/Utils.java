@@ -101,68 +101,115 @@ public class Utils {
 
     public int getLogoByName(String teamFull) {
         if (teamFull.equalsIgnoreCase("Manchester United FC")) {
-           return R.mipmap.ic_mu;
+            return R.mipmap.ic_mu;
 
         } else if (teamFull.equalsIgnoreCase("Liverpool FC")) {
             return R.mipmap.ic_liv;
 
         } else if (teamFull.equalsIgnoreCase("Huddersfield Town")) {
-          return R.mipmap.ic_hudder;
+            return R.mipmap.ic_hudder;
 
         } else if (teamFull.equalsIgnoreCase("Manchester City FC")) {
-           return R.mipmap.ic_mc;
+            return R.mipmap.ic_mc;
 
         } else if (teamFull.equalsIgnoreCase("West Bromwich Albion FC")) {
-           return R.mipmap.ic_westbrom;
+            return R.mipmap.ic_westbrom;
 
         } else if (teamFull.equalsIgnoreCase("Chelsea FC")) {
-           return R.mipmap.ic_chel;
+            return R.mipmap.ic_chel;
 
         } else if (teamFull.equalsIgnoreCase("Watford FC")) {
-           return R.mipmap.ic_wat;
+            return R.mipmap.ic_wat;
 
         } else if (teamFull.equalsIgnoreCase("Southampton FC")) {
-          return R.mipmap.ic_sou;
+            return R.mipmap.ic_sou;
 
         } else if (teamFull.equalsIgnoreCase("Tottenham Hotspur FC")) {
-           return R.mipmap.ic_tot;
+            return R.mipmap.ic_tot;
 
         } else if (teamFull.equalsIgnoreCase("Burnley FC")) {
-           return R.mipmap.ic_burney;
+            return R.mipmap.ic_burney;
 
         } else if (teamFull.equalsIgnoreCase("Stoke City FC")) {
-           return R.mipmap.ic_stoke;
+            return R.mipmap.ic_stoke;
 
         } else if (teamFull.equalsIgnoreCase("Everton FC")) {
-           return R.mipmap.ic_eve;
+            return R.mipmap.ic_eve;
 
         } else if (teamFull.equalsIgnoreCase("Swansea City FC")) {
-           return R.mipmap.ic_swan;
+            return R.mipmap.ic_swan;
 
         } else if (teamFull.equalsIgnoreCase("Newcastle United FC")) {
-          return R.mipmap.ic_new;
+            return R.mipmap.ic_new;
 
         } else if (teamFull.equalsIgnoreCase("Leicester City FC")) {
-         return R.mipmap.ic_lei;
+            return R.mipmap.ic_lei;
 
         } else if (teamFull.equalsIgnoreCase("Arsenal FC")) {
-          return R.mipmap.ic_ars;
+            return R.mipmap.ic_ars;
 
         } else if (teamFull.equalsIgnoreCase("Brighton & Hove Albion")) {
-         return R.mipmap.ic_bha;
+            return R.mipmap.ic_bha;
 
         } else if (teamFull.equalsIgnoreCase("AFC Bournemouth")) {
-          return R.mipmap.ic_bou;
+            return R.mipmap.ic_bou;
 
         } else if (teamFull.equalsIgnoreCase("Crystal Palace FC")) {
             return R.mipmap.ic_cry;
 
         } else if (teamFull.equalsIgnoreCase("West Ham United FC")) {
-          return R.mipmap.ic_westham;
+            return R.mipmap.ic_westham;
 
         } else {
-         return R.mipmap.ic_liv;
+            return R.mipmap.logo_placeholder;
 
+        }
+    }
+
+
+    public String getShortTeamName(String teamFull) {
+        if (teamFull.equalsIgnoreCase("Manchester United FC")) {
+            return "MUN";
+        } else if (teamFull.equalsIgnoreCase("Liverpool FC")) {
+            return "LIV";
+        } else if (teamFull.equalsIgnoreCase("Huddersfield Town")) {
+            return "HUD";
+        } else if (teamFull.equalsIgnoreCase("Manchester City FC")) {
+            return "MCI";
+        } else if (teamFull.equalsIgnoreCase("West Bromwich Albion FC")) {
+            return "WBA";
+        } else if (teamFull.equalsIgnoreCase("Chelsea FC")) {
+            return "CHE";
+        } else if (teamFull.equalsIgnoreCase("Watford FC")) {
+            return "WAT";
+        } else if (teamFull.equalsIgnoreCase("Southampton FC")) {
+            return "SOU";
+        } else if (teamFull.equalsIgnoreCase("Tottenham Hotspur FC")) {
+            return "TOT";
+        } else if (teamFull.equalsIgnoreCase("Burnley FC")) {
+            return "BUR";
+        } else if (teamFull.equalsIgnoreCase("Stoke City FC")) {
+            return "STK";
+        } else if (teamFull.equalsIgnoreCase("Everton FC")) {
+            return "EVE";
+        } else if (teamFull.equalsIgnoreCase("Swansea City FC")) {
+            return "SWA";
+        } else if (teamFull.equalsIgnoreCase("Newcastle United FC")) {
+            return "NEW";
+        } else if (teamFull.equalsIgnoreCase("Leicester City FC")) {
+            return "LEI";
+        } else if (teamFull.equalsIgnoreCase("Arsenal FC")) {
+            return "ARS";
+        } else if (teamFull.equalsIgnoreCase("Brighton & Hove Albion")) {
+            return "BHA";
+        } else if (teamFull.equalsIgnoreCase("AFC Bournemouth")) {
+            return "BOU";
+        } else if (teamFull.equalsIgnoreCase("Crystal Palace FC")) {
+            return "CRY";
+        } else if (teamFull.equalsIgnoreCase("West Ham United FC")) {
+            return "WHU";
+        } else {
+            return teamFull.substring(0, 3);
         }
     }
 }
