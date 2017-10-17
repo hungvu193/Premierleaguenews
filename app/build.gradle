@@ -38,4 +38,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile files('E:/StartUp/PremierLeagueNews/libs/androidsvg-1.2.1.jar')
+    compile 'com.android.support:cardview-v7:25.3.1'
 }
