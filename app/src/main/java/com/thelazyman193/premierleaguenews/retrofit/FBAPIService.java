@@ -27,9 +27,10 @@ public interface FBAPIService {
                                        @Path("teamid") int teamid);
 
     //get all fixtures
-    @GET("/v1/teams/{teamid}/fixtures")
-    Call<PlayerDataBean> getAllFixture(@Header("X-Auth-Token") String token,
-                                       @Path("teamid") String teamid);
+    @GET("/v1/competitions/{leagueid}/fixtures")
+    Call<FixtureDataBean> getAllFixture(@Header("X-Auth-Token") String token,
+                                        @Path("leagueid") String teamid,
+                                        @Query("timeFrame") String timeFrame);
 
 
     //get player
