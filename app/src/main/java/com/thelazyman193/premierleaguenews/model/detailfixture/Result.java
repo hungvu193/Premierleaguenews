@@ -1,5 +1,5 @@
 
-package com.thelazyman193.premierleaguenews.model.fixture;
+package com.thelazyman193.premierleaguenews.model.detailfixture;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -8,19 +8,16 @@ public class Result {
 
     @SerializedName("goalsHomeTeam")
     @Expose
-    private int goalsHomeTeam;
+    private Object goalsHomeTeam;
     @SerializedName("goalsAwayTeam")
     @Expose
-    private int goalsAwayTeam;
-    @SerializedName("halfTime")
-    @Expose
-    private HalfTime halfTime;
+    private Object goalsAwayTeam;
 
     public Object getGoalsHomeTeam() {
         return goalsHomeTeam;
     }
 
-    public void setGoalsHomeTeam(int goalsHomeTeam) {
+    public void setGoalsHomeTeam(Object goalsHomeTeam) {
         this.goalsHomeTeam = goalsHomeTeam;
     }
 
@@ -28,16 +25,8 @@ public class Result {
         return goalsAwayTeam;
     }
 
-    public void setGoalsAwayTeam(int goalsAwayTeam) {
+    public void setGoalsAwayTeam(Object goalsAwayTeam) {
         this.goalsAwayTeam = goalsAwayTeam;
-    }
-
-    public HalfTime getHalfTime() {
-        return halfTime;
-    }
-
-    public void setHalfTime(HalfTime halfTime) {
-        this.halfTime = halfTime;
     }
 
 }

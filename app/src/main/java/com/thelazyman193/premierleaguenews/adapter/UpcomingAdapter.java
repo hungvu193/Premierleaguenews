@@ -6,10 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.thelazyman193.premierleaguenews.R;
+import com.thelazyman193.premierleaguenews.interfaces.OnClickNextComming;
 import com.thelazyman193.premierleaguenews.model.fixture.Fixture;
 import com.thelazyman193.premierleaguenews.utils.Utils;
 
@@ -25,8 +26,8 @@ import butterknife.ButterKnife;
  * Package com.thelazyman193.premierleaguenews.adapter
  */
 
-public class NextLastFixturesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
+public class UpcomingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private OnClickNextComming nextComming;
     private Utils utils = Utils.getInstance();
     private Context context;
     private List<Fixture> fixtureList = new ArrayList<>();
@@ -34,7 +35,7 @@ public class NextLastFixturesAdapter extends RecyclerView.Adapter<RecyclerView.V
     //flag = 0 : next
     //flag = 1 : last
 
-    public NextLastFixturesAdapter(Context context, List<Fixture> fixtures, int flag) {
+    public UpcomingAdapter(Context context, List<Fixture> fixtures, int flag) {
         this.context = context;
         this.fixtureList = fixtures;
         this.flag = flag;
@@ -49,11 +50,21 @@ public class NextLastFixturesAdapter extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         NextLastHolder nextLastHolder = (NextLastHolder) holder;
-        Fixture currentFixture = fixtureList.get(position);
+        final Fixture currentFixture = fixtureList.get(position);
         nextLastHolder.imgTeam1.setImageResource(utils.getLogoByName(currentFixture.getHomeTeamName()));
         nextLastHolder.tvTeam1.setText(utils.getShortTeamName(currentFixture.getHomeTeamName()));
         nextLastHolder.imgTeam2.setImageResource(utils.getLogoByName(currentFixture.getAwayTeamName()));
         nextLastHolder.tvTeam2.setText(utils.getShortTeamName(currentFixture.getAwayTeamName()));
+        nextLastHolder.layoutRoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                nextComming.onClickNextComming(currentFixture.getLinks().getSelf().getHref());
+            }
+        });
+    }
+
+    public void setNextComming(OnClickNextComming nextComming) {
+        this.nextComming = nextComming;
     }
 
     @Override
@@ -63,7 +74,7 @@ public class NextLastFixturesAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     class NextLastHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.layoutRoot)
-        LinearLayout layoutRoot;
+        RelativeLayout layoutRoot;
         @BindView(R.id.imgTeam1)
         ImageView imgTeam1;
         @BindView(R.id.imgTeam2)
@@ -80,4 +91,6 @@ public class NextLastFixturesAdapter extends RecyclerView.Adapter<RecyclerView.V
             ButterKnife.bind(this, itemView);
         }
     }
+
+
 }
