@@ -148,7 +148,8 @@ public class TeamInfoActivity extends AppCompatActivity {
     }
 
     private class TeamAdapter extends FragmentStatePagerAdapter {
-        private String linkNew; private int teamID;
+        private String linkNew;
+        private int teamID;
 
         public TeamAdapter(FragmentManager fm, String linkNew, int teamID) {
             super(fm);
@@ -160,11 +161,11 @@ public class TeamInfoActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return OverviewFragment.getInstance(linkNew);
+                    return TeamFixtureFragment.getInstance(teamID);
                 case 1:
                     return SquadFragment.getInstance(teamID);
                 case 2:
-                    return TeamFixtureFragment.getInstance(teamID);
+                    return OverviewFragment.getInstance(linkNew);
 
                 default:
                     return OverviewFragment.getInstance(linkNew);
@@ -181,11 +182,11 @@ public class TeamInfoActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Overview";
+                    return "Upcoming Fixtures";
                 case 1:
                     return "Squad";
                 case 2:
-                    return "Upcoming Fixtures";
+                    return "Overview";
                 default:
                     return "Overview";
             }

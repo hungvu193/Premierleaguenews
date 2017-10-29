@@ -58,7 +58,7 @@ public class UpcomingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         nextLastHolder.layoutRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                nextComming.onClickNextComming(currentFixture.getLinks().getSelf().getHref());
+                nextComming.onClickNextComming(currentFixture.getLinks().getSelf().getHref(),currentFixture.getHomeTeamName(),currentFixture.getAwayTeamName());
             }
         });
     }

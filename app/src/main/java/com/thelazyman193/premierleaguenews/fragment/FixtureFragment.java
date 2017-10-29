@@ -1,6 +1,7 @@
 package com.thelazyman193.premierleaguenews.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
@@ -10,8 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.thelazyman193.premierleaguenews.R;
 import com.thelazyman193.premierleaguenews.adapter.LastestAdapter;
 import com.thelazyman193.premierleaguenews.adapter.UpcomingAdapter;
@@ -45,11 +49,28 @@ public class FixtureFragment extends Fragment implements LastestAdapter.OnClickL
     RecyclerView listLastest;
     @BindView(R.id.bottomSheetLayout)
     LinearLayout bottomSheetView;
+    @BindView(R.id.imgHomeTeam)
+    ImageView imgHomeTeam;
+    @BindView(R.id.imgAwayTeam)
+    ImageView imgAwayTeam;
+    @BindView(R.id.tvCount)
+    TextView tvCount;
+    @BindView(R.id.tvHomeWin1)
+    TextView tvHomeWin1;
+    @BindView(R.id.tvHomeWin2)
+    TextView tvHomeWin2;
+    @BindView(R.id.tvDrawn)
+    TextView tvDrawn;
+    @BindView(R.id.tvHomeTeam)
+    TextView tvHomeTeam;
+    @BindView(R.id.tvAwayTeam)
+    TextView tvAwayTeam;
     private Utils utils = Utils.getInstance();
     private FBAPIService mService;
     private List<Fixture> upcomingList = new ArrayList<>();
     private List<Fixture> lastestList = new ArrayList<>();
     private BottomSheetBehavior bottomSheetBehavior;
+    private boolean isBottmSheetShow = false;
 
     @Nullable
     @Override
@@ -57,6 +78,24 @@ public class FixtureFragment extends Fragment implements LastestAdapter.OnClickL
         View view = inflater.inflate(R.layout.fragment_fixtures, container, false);
         ButterKnife.bind(this, view);
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetView);
+        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                switch (newState) {
+                    case BottomSheetBehavior.STATE_HIDDEN:
+                        isBottmSheetShow = false;
+                        break;
+                    case BottomSheetBehavior.STATE_EXPANDED:
+                        isBottmSheetShow = true;
+                        break;
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        });
         mService = utils.getFABAPIService();
         mService.getAllFixture(getString(R.string.token), "445", "n7").enqueue(new Callback<FixtureDataBean>() {
             @Override
@@ -105,22 +144,36 @@ public class FixtureFragment extends Fragment implements LastestAdapter.OnClickL
 
     @Override
     public void clickLastest(String linkFixture) {
-        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        if (isBottmSheetShow)
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
     }
 
     @Override
-    public void onClickNextComming(String fixtureLink) {
+    public void onClickNextComming(String fixtureLink, final String homeTeam, final String awayTeam) {
+
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-        mService.getCurrentFixture(fixtureLink,getString(R.string.token)).enqueue(new Callback<FixtureBean>() {
+        Picasso.with(getContext()).load(utils.getLogoByName(homeTeam)).into(imgHomeTeam);
+        Picasso.with(getContext()).load(utils.getLogoByName(awayTeam)).into(imgAwayTeam);
+        tvHomeTeam.setText(utils.getShortTeamName(homeTeam));
+        tvAwayTeam.setText(utils.getShortTeamName(awayTeam));
+
+        mService.getCurrentFixture(fixtureLink, getString(R.string.token)).enqueue(new Callback<FixtureBean>() {
             @Override
             public void onResponse(Call<FixtureBean> call, Response<FixtureBean> response) {
-                Log.d("FixtureFrag",response.toString()+"");
+                if (response.isSuccessful()) {
+                    FixtureBean fixtureBean = response.body();
+                    tvCount.setText(fixtureBean.getHead2head().getCount() + " Times");
+                    tvHomeWin1.setText(fixtureBean.getHead2head().getHomeTeamWins() + "");
+                    tvHomeWin2.setText(fixtureBean.getHead2head().getAwayTeamWins() + "");
+                    tvDrawn.setText(fixtureBean.getHead2head().getDraws() == null ? "0" : fixtureBean.getHead2head().getDraws() + "");
+                }
+
             }
 
             @Override
             public void onFailure(Call<FixtureBean> call, Throwable t) {
-                Log.d("FixtureFrag",t.toString()+"");
+                Log.d("FixtureFrag", t.toString() + "");
             }
         });
     }

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.thelazyman193.premierleaguenews.R;
 
@@ -27,6 +28,8 @@ public class NewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_new,container,false);
         ButterKnife.bind(this,view);
+        WebViewClient webViewClient = new WebViewClient();
+        webView.setWebViewClient(webViewClient);
         webView.loadUrl("https://www.premierleague.com/");
         return view;
     }

@@ -7,5 +7,5 @@ package com.thelazyman193.premierleaguenews.interfaces;
  */
 
 public interface OnClickNextComming {
-    void onClickNextComming(String fixtureLink);
+    void onClickNextComming(String fixtureLink,String homeTeam,String awayTeam);
 }
