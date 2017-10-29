@@ -1,9 +1,13 @@
 package com.thelazyman193.premierleaguenews.activity;
 
 
+import android.content.Context;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
@@ -87,6 +91,21 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!isNetworkAvailable()) {
+            Toast.makeText(this, "No connection! Please try again", Toast.LENGTH_SHORT).show();
+        }
     }
 }
 
