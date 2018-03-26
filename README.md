@@ -8,3 +8,5 @@ However, only rarely there is need for such high rates, so if one of my guarding
 I will first try to contact you via mail to try to find out the reasons for your load. Mostly some sort of caching resolves the issue, 
 sometimes I loosen rate limits. However, depending on the load and your response time I may suspend your account and/or ban your IP.
 But you can register many api-keys from https://www.football-data.org/client/register.
+You can use current api-key that i have created or use you own api key then change it on https://github.com/hungvu193/Premierleaguenews/blob/master/app/src/main/res/values/strings.xml at .
+For more infomations about api and lisence please visit this website : https://www.football-data.org/documentation
