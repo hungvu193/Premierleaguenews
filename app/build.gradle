@@ -24,6 +24,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    // add svg from maven
     compile group: 'com.caverock', name: 'androidsvg', version: '1.2.1'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
