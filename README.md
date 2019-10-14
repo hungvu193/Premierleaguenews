@@ -12,4 +12,5 @@ But you can register many api-keys from https://www.football-data.org/client/reg
 You can use current api-key that i have created or use you own api key then change it on https://github.com/hungvu193/Premierleaguenews/blob/master/app/src/main/res/values/strings.xml at .
 For more infomations about api and lisence please visit this website : https://www.football-data.org/documentation
 
-https://imgur.com/a/3SrFwX0
+
+![Screenshot 1](https://imgur.com/a/3SrFwX0)
