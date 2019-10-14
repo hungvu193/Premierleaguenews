@@ -1,4 +1,5 @@
 # Premierleaguenews
+# This project 's Deprecated
 A simple project Android use Retrofit and Material Design
 
 This app use free api from http://www.football-data.org
