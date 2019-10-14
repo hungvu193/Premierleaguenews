@@ -13,9 +13,9 @@ You can use current api-key that i have created or use you own api key then chan
 For more infomations about api and lisence please visit this website : https://www.football-data.org/documentation
 
 
-![Screenshot 1](https://i.imgur.com/NNee5km.png)  ![Screenshot 2](https://i.imgur.com/wYeznEZ.png)
+![Screenshot 1](https://i.imgur.com/NNee5km.png)  ![Screenshot 3](https://i.imgur.com/ZSN4f7U.png)
 
-![Screenshot 3](https://i.imgur.com/ZSN4f7U.png)  ![Screenshot 4](https://i.imgur.com/UTZnfck.png)
+![Screenshot 2](https://i.imgur.com/wYeznEZ.png)  ![Screenshot 4](https://i.imgur.com/UTZnfck.png)
 
 ![Screenshot 5](https://i.imgur.com/xwd0DRm.png)  ![Screenshot 6](https://i.imgur.com/QmBB6A9.png)
 
